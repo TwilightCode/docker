@@ -1,0 +1,21 @@
+Dockerfile
+
+FROM golang:1.16
+
+EXPOSE 8080
+
+ENV PORT=8080
+ENV REQUEST_ORIGIN=http://localhost:8080
+
+WORKDIR /usr/src/app
+
+COPY ./material-applications/example-backend .
+
+RUN go build
+
+CMD ["./server"]
+
+=============================
+
+docker build . -t backend
+docker run -itp 8080:8080 backend
